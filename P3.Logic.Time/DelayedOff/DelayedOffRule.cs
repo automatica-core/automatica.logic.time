@@ -105,6 +105,16 @@ namespace P3.Logic.Time.DelayedOff
             }
             else if (instance.This2RuleInterfaceTemplate == DelayedOffLogicFactory.RuleReset)
             {
+                if (_triggerOnlyIfTrue)
+                {
+                    var inputValue = Convert.ToBoolean(value);
+
+                    if (!inputValue)
+                    {
+                        return new List<ILogicOutputChanged>();
+                    }
+                }
+
                 Context.Logger.LogDebug($">>> Stopping timer <<<");
                 _timer.Stop();
                 _timerRunning = false;
