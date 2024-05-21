@@ -118,6 +118,8 @@ namespace P3.Logic.Time.DelayedOff
                 Context.Logger.LogDebug($">>> Stopping timer <<<");
                 _timer.Stop();
                 _timerRunning = false;
+
+                return SingleOutputChanged(new LogicOutputChanged(_output, false));
             }
             return new List<ILogicOutputChanged>();
         }
